@@ -1,0 +1,25 @@
+{
+  "name": "deriv-digit-differ-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "randomDiffer.js",
+  "dependencies": {
+    "@deriv/deriv-api": "^1.0.15",
+    "dotenv": "^17.2.2",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3",
+    "node-telegram-bot-api": "^0.63.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "nodemon": "^2.0.0"
+  },
+  "scripts": {
+    "start": "node ./randomDiffer.js",
+    "dev": "nodemon ./randomDiffer.js"
+  },
+  "keywords": [],
+  "author": "KenOtaru",
+  "license": "ISC"
+}
