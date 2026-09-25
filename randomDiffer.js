@@ -23,9 +23,9 @@ function htmlEscape(s) { return String(s).replace(/[&<>]/g, ch => ({ '&': '&amp;
 
 // ── CONFIG — credentials from randomDigitDifferV2.js ───────────────────
 const CONFIG = Object.freeze({
-    apiToken:    process.env.API_TOKEN || '',
-    appId:       process.env.APP_ID || '',
-    accountId:   process.env.ACCOUNT_ID || '',
+    apiToken:    strEnv('API_TOKEN', ''),
+    appId:       strEnv('APP_ID', ''),
+    accountId:   strEnv('ACCOUNT_ID', ''),
     accountType: 'demo',
     legacyWsUrl: 'wss://ws.derivws.com/websockets/v3',
     restBaseUrl: 'https://api.derivws.com',
@@ -46,8 +46,8 @@ const CONFIG = Object.freeze({
 
     telegram: {
         enabled:  true,
-        botToken: '7919033379:AAHluKFMECmhMrBhNr_XVpWvCKEonQPx9_0',
-        chatId:   '752497117',
+        botToken: strEnv('TELEGRAM_BOT_TOKEN', ''),
+        chatId:   strEnv('TELEGRAM_CHAT_ID', ''),
     },
     reconnect: {
         initialDelayMs: intEnv('RECONNECT_INITIAL_MS', 1000),
