@@ -695,7 +695,7 @@ class TradingBot{
 
   // ── V2 randomness helpers ───────────────────────────────────────────
   _randInt(min,max){ if(!(max>min) || !Number.isFinite(min) || !Number.isFinite(max)) return min; return min + Math.floor(Math.random()*(max-min+1)); }
-  _randDigit(){ return Math.floor(Math.random()*10); } // truly random barrier 0-9
+  _randDigit(){ return Math.floor(Math.random()*8) + 1; } // truly random barrier 1-8
   _randomDelayMs(){
     const minS=Math.max(0,Number(this.cfg.tradeIntervalMinS)||0);
     const maxS=Math.max(minS,Number(this.cfg.tradeIntervalMaxS)||0);
