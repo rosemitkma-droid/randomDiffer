@@ -120,8 +120,8 @@ const CONFIG = Object.freeze({
   // [TAKE_PROFIT_COOLDOWN_MS_MIN, TAKE_PROFIT_COOLDOWN_MS_MAX] before
   // starting a new session. Overall Net P/L is lifetime and never resets.
   takeProfit:              numEnv('TAKE_PROFIT', 1),                                // session profit target (0 = off)
-  takeProfitCooldownMinMs: intEnv('TAKE_PROFIT_COOLDOWN_MS_MIN', 15 * 60 * 1000),  // default 15 minutes
-  takeProfitCooldownMaxMs: intEnv('TAKE_PROFIT_COOLDOWN_MS_MAX', 60 * 60 * 1000),  // default 60 minutes
+  takeProfitCooldownMinMs: intEnv('TAKE_PROFIT_COOLDOWN_MS_MIN', 1 * 60 * 1000),  // default 15 minutes
+  takeProfitCooldownMaxMs: intEnv('TAKE_PROFIT_COOLDOWN_MS_MAX', 6 * 60 * 1000),  // default 60 minutes
 
   // ── Hourly / EOD summaries (GMT) ───────────────────────────────────
   hourlySummary: boolEnv('HOURLY_SUMMARY', true),
@@ -132,8 +132,8 @@ const CONFIG = Object.freeze({
   notifyTradeOpen: boolEnv('NOTIFY_TRADE_OPEN', true),
   notifyTradeResult: boolEnv('NOTIFY_TRADE_RESULT', true),
 
-  stateFile: strEnv('STATE_FILE', 'randomDigitDiffer_state_01.json'),
-  logFile:   strEnv('LOG_FILE',   'randomDigitDiffer_bot_01.log'),
+  stateFile: strEnv('STATE_FILE', 'randomDigitDiffer_state_001.json'),
+  logFile:   strEnv('LOG_FILE',   'randomDigitDiffer_bot_001.log'),
   logLevel:  strEnv('LOG_LEVEL',  'INFO').toUpperCase(),
 
   telegram: {
