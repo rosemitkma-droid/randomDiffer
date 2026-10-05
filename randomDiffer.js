@@ -91,7 +91,7 @@ const CONFIG = Object.freeze({
   skipRecentTradedSymbols: boolEnv('SKIP_RECENT_TRADED', true),
   recentTradedSymbolsLen:  intEnv('RECENT_TRADED_LEN', 3),   // rolling window of symbols to avoid
   stake:         numEnv('STAKE', 1.99),
-  durationTicks: intEnv('DURATION_TICKS', 0), // 0 = auto (1 tick for DIGITDIFF)
+  durationTicks: intEnv('DURATION_TICKS', 1), 
   minStake:      1.99,
   maxStake:      1000,
 
