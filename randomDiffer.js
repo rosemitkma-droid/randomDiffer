@@ -84,22 +84,22 @@ const CONFIG = Object.freeze({
   currency:   'USD',
 
   // ── MULTI asset — comma-separated env ASSETS (like newDifferX2.js) ─
-  assets: ('R_10,R_25,R_50,R_75,R_100,RDBULL,RDBEAR').split(',').map(s=>s.trim()).filter(Boolean),
+  assets: ('R_10,R_25,R_50,R_75,RDBULL,RDBEAR').split(',').map(s=>s.trim()).filter(Boolean),
   // Asset rotation lockout + recent-symbol skip — same knobs/semantics
   // as newDifferX2.js. Default = OFF so the symbol pick is pure random.
   assetRotationMs:         intEnv('ASSET_ROTATION_MS', 0),   // lock recently-traded symbol for N ms (0 = off)
   skipRecentTradedSymbols: boolEnv('SKIP_RECENT_TRADED', true),
-  recentTradedSymbolsLen:  intEnv('RECENT_TRADED_LEN', 1),   // rolling window of symbols to avoid
-  stake:         numEnv('STAKE', 0.35),
-  durationTicks: intEnv('DURATION_TICKS', 1),
-  minStake:      0.35,
+  recentTradedSymbolsLen:  intEnv('RECENT_TRADED_LEN', 3),   // rolling window of symbols to avoid
+  stake:         numEnv('STAKE', 1.99),
+  durationTicks: intEnv('DURATION_TICKS', 0), // 0 = auto (1 tick for DIGITDIFF)
+  minStake:      1.99,
   maxStake:      1000,
 
   // ── TRULY RANDOM throttle (replaces fixed tradeCooldownMs) ─────────
-  ticksBetweenMin:  intEnv('TICKS_BETWEEN_MIN', 1),      // skip N random ticks before next trade
-  ticksBetweenMax:  intEnv('TICKS_BETWEEN_MAX', 1),
-  tradeIntervalMinS: numEnv('TRADE_INTERVAL_MIN_S', 12),  // plus a random seconds delay
-  tradeIntervalMaxS: numEnv('TRADE_INTERVAL_MAX_S', 120), // Max random seconds delay
+  ticksBetweenMin:  intEnv('TICKS_BETWEEN_MIN', 0),      // skip N random ticks before next trade
+  ticksBetweenMax:  intEnv('TICKS_BETWEEN_MAX', 0),
+  tradeIntervalMinS: numEnv('TRADE_INTERVAL_MIN_S', 1 * 60 * 1000),  //12 plus a random seconds delay
+  tradeIntervalMaxS: numEnv('TRADE_INTERVAL_MAX_S', 6 * 60 * 1000), //120 Max random seconds delay
   maxOpenTrades:   1,
   tradeWatchdogMs: intEnv('WATCHDOG_MS', 20000),
 
@@ -107,10 +107,10 @@ const CONFIG = Object.freeze({
   martingaleEnabled:  boolEnv('MARTINGALE_ENABLED', true),
   martingaleStep:     numEnv('MARTINGALE_STEP', 11.3),            // multiplier per loss
   martingaleFilter:   intEnv('MARTINGALE_FILTER', 0),           // losses before multiplier starts
-  martingaleMaxSteps: intEnv('MARTINGALE_MAX_STEPS', 4),        // cap exponent on the scaled steps (0 = uncapped)
+  martingaleMaxSteps: intEnv('MARTINGALE_MAX_STEPS', 3),        // cap exponent on the scaled steps (0 = uncapped)
   martingaleMaxStake: numEnv('MARTINGALE_MAX_STAKE', 1000),      // hard cap (also limited by maxStake)
   // ── Safety (daily, GMT) ──────────────────────────────────────────
-  dailyMaxLoss:   numEnv('DAILY_MAX_LOSS', 2000),  // 0 = off
+  dailyMaxLoss:   numEnv('DAILY_MAX_LOSS', 100),  // 0 = off
   dailyMaxProfit: numEnv('DAILY_MAX_PROFIT', 0),   // 0 = off (day-based; takeProfit is session-based)
   dailyMaxTrades: intEnv('DAILY_MAX_TRADES', 0),   // 0 = off
 
@@ -132,8 +132,8 @@ const CONFIG = Object.freeze({
   notifyTradeOpen: boolEnv('NOTIFY_TRADE_OPEN', true),
   notifyTradeResult: boolEnv('NOTIFY_TRADE_RESULT', true),
 
-  stateFile: strEnv('STATE_FILE', 'randomDigitDiffer_state_002.json'),
-  logFile:   strEnv('LOG_FILE',   'randomDigitDiffer_bot_002.log'),
+  stateFile: strEnv('STATE_FILE', 'randomDigitDiffer_state_01.json'),
+  logFile:   strEnv('LOG_FILE',   'randomDigitDiffer_bot_01.log'),
   logLevel:  strEnv('LOG_LEVEL',  'INFO').toUpperCase(),
 
   telegram: {
